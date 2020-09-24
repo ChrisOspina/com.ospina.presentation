@@ -5,6 +5,10 @@
  */
 package com.ospina.buisness;
 
+import java.io.FileReader;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 /**
  *
  * @author cospina
@@ -22,29 +26,27 @@ public class MyDate {
        Year = NewYear;
    }
    
-   void setMonth(int m)
-   {
-       Month = m;
+   void setMonth(int m) {Month = m;}
+   
+   void setDay(int d){Day = d;}
+   
+   void setYear(int y){Year = y;}
+   
+   int getYear(){return Year;}
+   int getDay() {return Day;}
+   
+   int getMonth() {return Month;}
+   
+   void readJSON(Scanner fr){
+   this.setMonth(fr.nextInt());
+   this.setDay(fr.nextInt());
+   this.setYear(fr.nextInt());
    }
-    void setDay(int d)
-   {
-       Day = d;
-   }
-     void setYear(int y)
-   {
-       Year = y;
-   }
-   int getYear()
-   {
-       return Year;
-   }
-   int getDay()
-   {
-       return Day;
-   }
-   int getMonth()
-   {
-       return Month;
+   
+   void writeJSON(PrintStream ps){
+    System.out.println(this.getMonth());
+    System.out.println(this.getDay());
+    System.out.println(this.getMonth());
    }
    
 }

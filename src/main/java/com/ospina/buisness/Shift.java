@@ -5,6 +5,9 @@
  */
 package com.ospina.buisness;
 
+import java.io.FileReader;
+import java.io.PrintStream;
+
 /**
  *
  * @author cospina
@@ -21,5 +24,16 @@ public class Shift {
     public void setHours(double hw){HoursWorked = hw;}
     public MyDate getDate(){return date;}
     public double getHours(){return HoursWorked;}
+    
+     
+   void readJSON(FileReader fr){
+     
+   
+   }
+   
+   void writeJSON(PrintStream ps){
+    System.out.println(this.getDate());
+    System.out.println(this.getHours());
+   }
     
 }

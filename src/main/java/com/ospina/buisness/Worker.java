@@ -5,6 +5,10 @@
  */
 package com.ospina.buisness;
 
+import java.io.FileReader;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 /**
  *
  * @author cospina
@@ -23,4 +27,29 @@ public class Worker {
         id = newid;
         payrate = newpayrate;
     }
+    void setFirst(String f){first =f;}
+    void setLast(String l){last = l;}
+    void setId(int i){id =i;}
+    void setRate(double pr){payrate = pr;}
+    String getFirst(){return first;}
+    String getLast(){return last;}
+    int getId(){return id;}
+    double getRate(){return payrate;}
+    
+   void readJSON(Scanner fr){
+   this.setFirst(fr.nextLine());
+   this.setLast(fr.nextLine());
+   this.setId(fr.nextInt());
+   this.setRate(fr.nextFloat());
+   
+   }
+   
+   void writeJSON(PrintStream ps){
+    System.out.println(this.getFirst());
+    System.out.println(this.getLast());
+    System.out.println(this.getId());
+    System.out.println(this.getRate());
+   }
+   
+    
 }
