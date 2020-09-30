@@ -5,18 +5,24 @@
  */
 package com.ospina.buisness;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import java.io.FileReader;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 /**
  *
  * @author cospina
  */
 public class Worker {
+    @SerializedName("first")
     private String first;
+    @SerializedName("last")
     private String last;
+    @SerializedName("id")
     private int id;
+    @SerializedName("payrate")
     private double payrate;
     
     public Worker(){}
@@ -36,19 +42,23 @@ public class Worker {
     int getId(){return id;}
     double getRate(){return payrate;}
     
-   void readJSON(Scanner fr){
-   this.setFirst(fr.nextLine());
-   this.setLast(fr.nextLine());
-   this.setId(fr.nextInt());
-   this.setRate(fr.nextFloat());
+   void readJSON(FileReader fr){
+    GsonBuilder builder = new GsonBuilder();
+    builder.setPrettyPrinting();
+    Gson gson = builder.create();
+    Worker w = gson.fromJson(fr, Worker.class);
+    this.setFirst(w.getFirst());
+    this.setLast(w.getLast());
+    this.setId(w.getId());
+    this.setRate(w.getRate());
    
-   }
-   
+   } 
    void writeJSON(PrintStream ps){
-    System.out.println(this.getFirst());
-    System.out.println(this.getLast());
-    System.out.println(this.getId());
-    System.out.println(this.getRate());
+    GsonBuilder builder = new GsonBuilder();
+    builder.setPrettyPrinting();
+    Gson gson = builder.create();
+    String jsonString = gson.toJson(this);
+    ps.println(jsonString);
    }
    
     

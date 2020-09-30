@@ -5,17 +5,22 @@
  */
 package com.ospina.buisness;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import java.io.FileReader;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 /**
  *
  * @author cospina
  */
 public class MyDate {
+    @SerializedName("month:")
     private int Month;
+    @SerializedName("day:")
     private int Day;
+    @SerializedName("year:")
     private int Year;
     //default constructor 
    public MyDate(){}
@@ -37,16 +42,23 @@ public class MyDate {
    
    int getMonth() {return Month;}
    
-   void readJSON(Scanner fr){
-   this.setMonth(fr.nextInt());
-   this.setDay(fr.nextInt());
-   this.setYear(fr.nextInt());
+   void readJSON(FileReader fr){
+    GsonBuilder builder = new GsonBuilder();
+    builder.setPrettyPrinting();
+    Gson gson = builder.create();
+    
+    MyDate md = gson.fromJson(fr, MyDate.class);
+    this.setMonth(md.getMonth());
+    this.setDay(md.getDay());
+    this.setYear(md.getYear());
    }
    
    void writeJSON(PrintStream ps){
-    System.out.println(this.getMonth());
-    System.out.println(this.getDay());
-    System.out.println(this.getMonth());
+    GsonBuilder builder = new GsonBuilder();
+    builder.setPrettyPrinting();
+    Gson gson = builder.create();
+    String jsonString = gson.toJson(this);
+    ps.println(jsonString);
    }
    
 }
