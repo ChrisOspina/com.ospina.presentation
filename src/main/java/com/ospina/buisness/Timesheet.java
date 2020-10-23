@@ -25,9 +25,27 @@ public class Timesheet {
             this.Shifts[i].setHours(0.00);
            this.Shifts[i].setDate(d);
         }
-        
-     
-    
     }
+    
+    public void setWorker(Worker w){Worker = w;}
+    public Worker getWorker(){return Worker;}
+    public Shift getMaxShift()
+    {
+       Shift MaxShift = new Shift();
+       for(int i=0; i< Shifts.length; i++)
+       {
+           if(Shifts[i].getHours()>Shifts[i-1].getHours())
+           {
+               MaxShift.setHours(Shifts[i].getHours());
+               MaxShift.setDate(Shifts[i].getDate());
+           }
+       }
+        return MaxShift;
+    }
+    public Shift getShiftAt(int index) throws ArrayIndexOutOfBoundsException
+    {
+        return Shifts[index];
+    }
+    
     
 }
