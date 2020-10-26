@@ -25,7 +25,7 @@ public class Worker {
     private String last;
     @SerializedName("id")
     private int id;
-    @SerializedName("payrate")
+    @SerializedName("payRate")
     private double payrate;
     /**
      * This method is the default constructor for the 

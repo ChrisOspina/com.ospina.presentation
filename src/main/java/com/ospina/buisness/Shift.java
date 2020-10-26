@@ -21,7 +21,7 @@ import java.io.PrintStream;
 public class Shift {
     @SerializedName("date") 
     private MyDate date;
-    @SerializedName("Hours worked")
+    @SerializedName("hoursworked")
     private double HoursWorked;
     
     /**

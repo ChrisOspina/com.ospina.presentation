@@ -19,11 +19,11 @@ import java.io.PrintStream;
  * @since 9/22/20
  */
 public class MyDate {
-    @SerializedName("month:")
+    @SerializedName("month")
     private int Month;
-    @SerializedName("day:")
+    @SerializedName("day")
     private int Day;
-    @SerializedName("year:")
+    @SerializedName("year")
     private int Year;
     
   /**
