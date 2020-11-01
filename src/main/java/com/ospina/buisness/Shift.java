@@ -21,7 +21,7 @@ import java.io.PrintStream;
 public class Shift {
     @SerializedName("date") 
     private MyDate date;
-    @SerializedName("hoursworked")
+    @SerializedName("hoursWorked")
     private double HoursWorked;
     
     /**
@@ -102,8 +102,9 @@ public class Shift {
        //****************************************
        Shift s = gson.fromJson(fr, Shift.class);
        //Finally we will set each member variable to the returned values from get
+       date.readJSON(fr);
        this.setHours(s.getHours());
-       this.setDate(s.getDate());
+      
    
     } 
    

@@ -12,14 +12,22 @@ import java.io.FileReader;
 import java.io.PrintStream;
 
 /**
- *
+ * Contains code for the TimeSheetClass. This class represents
+ * A Worker's Time sheet that documents their weekly shifts.
+ * The shifts are represented through an array
  * @author cospina
+ * @version 1.0
+ * @since 10/21/20
  */
 public class Timesheet {
     @SerializedName("worker")
     private Worker Worker;
     @SerializedName("shifts")
     private Shift Shifts[];
+    /**
+     * This method is the default constructor for the
+     * Timesheet class
+     */
     public Timesheet()
     {
         Shifts = new Shift[4];
@@ -35,8 +43,27 @@ public class Timesheet {
         }
     }
     
+    /**
+     * This is the set method
+     * for the worker member variable.
+     * @param w the placeholder variable for worker
+     */
     public void setWorker(Worker w){Worker = w;}
+    /**
+     * This is the get method for the worker member variable
+     * @return the current instance of Worker
+     */
     public Worker getWorker(){return Worker;}
+    /**
+     * This method returns the shift with the 
+     * maximum hours
+     * 
+     * In order to do this we must compare the current shift with the ]
+     * previous one. If the current one has a shift with longer hours
+     * the max shift variable will be updated.
+     * 
+     * @return the shift with the maximum hours. 
+     */
     public Shift getMaxShift()
     {
        Shift MaxShift = new Shift();
@@ -50,10 +77,22 @@ public class Timesheet {
        }
         return MaxShift;
     }
+    /**
+     * @param index represents which shift the user wants to
+     * 
+     * This method gives the user the nth instance of shift that they
+     * input.
+     * @return the nth instance of shift
+     * @throws ArrayIndexOutOfBoundsException 
+     */
     public Shift getShiftAt(int index) throws ArrayIndexOutOfBoundsException
     {
         return Shifts[index];
     }
+    /**
+     * This method prints a shift report to a given printstream.
+     * @param ps 
+     */
     public void report(PrintStream ps)
     {
        ps.println("Payroll Report");
@@ -82,7 +121,10 @@ public class Timesheet {
        ps.println("-----  ---  ----  ----- ------  ---");
        ps.printf("Total %20.2f %2.2f",totalhrs,totalpay);
     }
-    
+    /**
+     * This method writes the time sheet to a JSON file
+     * @param ps 
+     */
     public void writeJSON(PrintStream ps)
     {
        GsonBuilder builder = new GsonBuilder();
@@ -91,7 +133,10 @@ public class Timesheet {
        String jsonString = gson.toJson(this);
        ps.println(jsonString);
     }
-    
+    /**
+     * This method reads time sheet data from a JSON file
+     * @param fr 
+     */
     public void readJSON(FileReader fr)
     {
         GsonBuilder builder = new GsonBuilder();
@@ -103,6 +148,20 @@ public class Timesheet {
         {
            Shifts[i].readJSON(fr);
         }
+    } 
+    /**
+     * This method converts the object data into a string 
+     * @return the String representation of the class
+     */
+    @Override
+    public String toString()
+    {
+        String s = Worker.getFirst() + " " + Worker.getLast() + "\n";
+        for(int i =0; i<Shifts.length;i++)
+        {  
+          s += Shifts[i].toString()+"\n";
+        }         
+       return s;       
     }
             
     

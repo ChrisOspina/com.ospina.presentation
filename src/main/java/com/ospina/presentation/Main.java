@@ -14,10 +14,10 @@ import java.util.Scanner;
 
 /**
  * Contains main program code. This class generates
- * a shift presentation for employees
+ * a Timesheet presentation for employees
  * @author cospina
  * @version 1.0
- * @since 9/20/20
+ * @since 10/20/20
  *
  */
 public class Main {
@@ -41,7 +41,7 @@ public class Main {
         String injson;
         String outjson;
         
-        int shiftindex =0;
+        int shiftindex = 0;
        
         //To create a menu we first have to hardcode the options into the screen
         System.out.printf("TimeSheet UI\n");
@@ -84,12 +84,13 @@ public class Main {
                     t.getShiftAt(shiftindex);
                     break;
                 case 4:
-                    t.getMaxShift();
+                    System.out.println(t.getMaxShift());
                     break;
                 case 5:
                     t.report(System.out);
                     break;
                 case 6:
+                    System.out.println(t.toString());
                     break;
                 case 7: 
                     break;
