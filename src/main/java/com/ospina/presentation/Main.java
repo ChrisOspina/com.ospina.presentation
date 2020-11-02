@@ -83,7 +83,7 @@ public class Main {
                     {
                        System.out.println("Select an index 0-4");
                        shiftindex = in.nextInt();
-                       t.getShiftAt(shiftindex);
+                       System.out.println(t.getShiftAt(shiftindex));
                     }
                     catch(ArrayIndexOutOfBoundsException x)
                     {

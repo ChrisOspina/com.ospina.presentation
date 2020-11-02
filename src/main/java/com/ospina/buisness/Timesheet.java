@@ -89,13 +89,16 @@ public class Timesheet {
      */
     public Shift getShiftAt(int index) throws ArrayIndexOutOfBoundsException
     {
-      if(index< 0 || index >  Shifts.length)
-              {
-                ArrayIndexOutOfBoundsException x;
-                x = new ArrayIndexOutOfBoundsException();
-                throw x;
-              }
-      return Shifts[index];  
+      if(index< 0 || index > Shifts.length)
+        {
+           ArrayIndexOutOfBoundsException x;
+           x = new ArrayIndexOutOfBoundsException();
+           throw x;
+        }
+      else
+      {
+         return Shifts[index];  
+      }
     }
     /**
      * This method prints a shift report to a given printstream.
@@ -125,8 +128,8 @@ public class Timesheet {
             totalhrs += Shifts[i].getHours();   
             totalpay += pay;
        }
-       ps.println("-----  ---  ----  ----- ------  ---");
-       ps.printf("Total, %20.2f %2.2f",totalhrs,totalpay);
+       ps.println("-----  ---  ----  ------------  ---");
+       ps.printf("Total %20.2f %9.2f\n",totalhrs,totalpay);
     }
     /**
      * This method writes the time sheet to a JSON file
@@ -151,10 +154,7 @@ public class Timesheet {
         Gson gson = builder.create();
         Timesheet t = gson.fromJson(fr, Timesheet.class);
         this.setWorker(t.getWorker());
-        for (int i =0; i<Shifts.length;i++)
-        {
-           Shifts[i].readJSON(fr);
-        }
+        this.Shifts= t.Shifts;      
     } 
     /**
      * This method converts the object data into a string 
@@ -166,7 +166,7 @@ public class Timesheet {
         String s = Worker.getFirst() + " " + Worker.getLast() + "\n";
         for(int i =0; i<Shifts.length;i++)
         {  
-          s += Shifts[i].toString()+"\n";
+          s += Shifts[i].toString()+" hrs"+"\n";
         }         
        return s;       
     }
