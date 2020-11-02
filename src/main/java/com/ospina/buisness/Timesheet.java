@@ -30,6 +30,7 @@ public class Timesheet {
      */
     public Timesheet()
     {
+        Worker = new Worker();
         Shifts = new Shift[4];
         MyDate d = new MyDate();
         d.setDay(0);
@@ -41,6 +42,7 @@ public class Timesheet {
             this.Shifts[i].setHours(0.00);
             this.Shifts[i].setDate(d);
         }
+        
     }
     
     /**
@@ -69,7 +71,7 @@ public class Timesheet {
        Shift MaxShift = new Shift();
        for(int i=0; i< Shifts.length; i++)
        {
-           if(Shifts[i].getHours()>Shifts[i-1].getHours())
+           if(Shifts[i].getHours()>MaxShift.getHours())
            {
                MaxShift.setHours(Shifts[i].getHours());
                MaxShift.setDate(Shifts[i].getDate());
@@ -87,7 +89,13 @@ public class Timesheet {
      */
     public Shift getShiftAt(int index) throws ArrayIndexOutOfBoundsException
     {
-        return Shifts[index];
+      if(index< 0 || index >  Shifts.length)
+              {
+                ArrayIndexOutOfBoundsException x;
+                x = new ArrayIndexOutOfBoundsException();
+                throw x;
+              }
+      return Shifts[index];  
     }
     /**
      * This method prints a shift report to a given printstream.
@@ -111,15 +119,14 @@ public class Timesheet {
        for(int i = 0; i<Shifts.length;i++)
        {
            double pay = this.Worker.getRate()* Shifts[i].getHours();
-           ps.printf("%d %2d %2d %2.2f\n",Shifts[i].getDate().getMonth(),
+           ps.printf("%3d %5d %4d %10.2f %10.2f\n",Shifts[i].getDate().getMonth(),
                   Shifts[i].getDate().getDay(), Shifts[i].getDate().getYear(),
                   Shifts[i].getHours(),pay);
-           totalhrs = Shifts[i].getHours()+ Shifts[i-1].getHours();
-           totalpay += pay;
+            totalhrs += Shifts[i].getHours();   
+            totalpay += pay;
        }
-       
        ps.println("-----  ---  ----  ----- ------  ---");
-       ps.printf("Total %20.2f %2.2f",totalhrs,totalpay);
+       ps.printf("Total, %20.2f %2.2f",totalhrs,totalpay);
     }
     /**
      * This method writes the time sheet to a JSON file

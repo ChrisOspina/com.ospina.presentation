@@ -58,7 +58,7 @@ public class Main {
         //The user's choice
         //*******************************
         int choice = 0;
-       // While the user's choice is note equal to 4
+       // While the user's choice is not equal to 7
         while(choice != 7)
         {            
             //The Scanner will allow the user to input their choice
@@ -79,9 +79,16 @@ public class Main {
                     t.writeJSON(pr);
                     break;
                 case 3:
-                    System.out.println("Select an index 0-3");
-                    shiftindex = in.nextInt();
-                    t.getShiftAt(shiftindex);
+                    try
+                    {
+                       System.out.println("Select an index 0-4");
+                       shiftindex = in.nextInt();
+                       t.getShiftAt(shiftindex);
+                    }
+                    catch(ArrayIndexOutOfBoundsException x)
+                    {
+                        System.err.println("The index is out of bounds");
+                    }                         
                     break;
                 case 4:
                     System.out.println(t.getMaxShift());

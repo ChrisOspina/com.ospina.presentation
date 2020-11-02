@@ -29,7 +29,10 @@ public class Shift {
      * the shift class
      */
     
-    public Shift(){}
+    public Shift(){
+        date = new MyDate();
+        HoursWorked = 0;
+    }
     
     /**
      * This method is the constructor for the Shift class

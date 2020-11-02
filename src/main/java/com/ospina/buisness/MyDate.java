@@ -114,7 +114,8 @@ public class MyDate {
        //We then must create an instance of MyDate in order to use as
        //a refrence for the JSON file to read
        //****************************************
-       MyDate md = gson.fromJson(fr, MyDate.class);
+       MyDate md = new MyDate();
+       md = gson.fromJson(fr, MyDate.class);
        //Finally we will set each member variable to the returned values from get
        this.setMonth(md.getMonth());
        this.setDay(md.getDay());
