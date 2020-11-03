@@ -105,7 +105,7 @@ public class Shift {
        //****************************************
        Shift s = gson.fromJson(fr, Shift.class);
        //Finally we will set each member variable to the returned values from get
-       date.readJSON(fr);
+       date = s.date;
        this.setHours(s.getHours());
       
    
@@ -142,7 +142,7 @@ public class Shift {
         //of the prewritten toString version of the "date" instance
         //and the the hoursWorked member variable
         //*******************************************
-        String s = this.date.toString() + "," + " " + this.HoursWorked;
+        String s = this.date.toString() + "," + " " + this.HoursWorked + " hrs";
         return s;
     }
 }

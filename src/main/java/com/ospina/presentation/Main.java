@@ -40,9 +40,8 @@ public class Main {
         //These JSON string variables are placeholders for what the user inputs
         String injson;
         String outjson;
-        
+        //This variable will store the shift index for later
         int shiftindex = 0;
-       
         //To create a menu we first have to hardcode the options into the screen
         System.out.printf("TimeSheet UI\n");
         System.out.println("-----------");
@@ -67,41 +66,61 @@ public class Main {
             switch(choice)
             {
                 case 1: 
+                    //Asking the user for a JSON filename
                     System.out.println(" Enter TimeSheet JSON Input Filename");
                     injson = in.nextLine();
+                    //creating a new instance of FileReader to reader to JSON
                     FileReader fr = new FileReader(injson);
                     t.readJSON(fr);
                     break;
                 case 2:
+                    //*****************************************
+                    //Same algorithim but we're writing to JSON and creating
+                    //an instance of PrintStream
+                    //***************************
                     System.out.println(" Enter TimeSheet JSON Output Filename");
                     outjson = in.nextLine();
                     PrintStream pr = new PrintStream(outjson);
                     t.writeJSON(pr);
                     break;
                 case 3:
+                    
                     try
                     {
-                       System.out.println("Select an index 0-4");
-                       shiftindex = in.nextInt();
-                       System.out.println(t.getShiftAt(shiftindex));
+                        //**********************************************
+                        //Inside the try the user will input an index
+                        //Which will signify which instance in the array 
+                        //to return and print out
+                        //***************************************88
+                        System.out.println("Select an index 0-4");
+                        shiftindex = in.nextInt();
+                        System.out.println(t.getShiftAt(shiftindex));
                     }
                     catch(ArrayIndexOutOfBoundsException x)
                     {
+                        //***********************************************
+                        //In case the index is out of bounds it will print
+                        //a message to the console to avoid an error.
+                        //********************************************
                         System.err.println("The index is out of bounds");
                     }                         
                     break;
                 case 4:
+                    //Prints out the shift with the longest amount of hours
                     System.out.println(t.getMaxShift());
                     break;
                 case 5:
+                    //Prints the prewritten report to the screen
                     t.report(System.out);
                     break;
                 case 6:
+                    //Prints the prewritten ToString representation to the screen
                     System.out.println(t.toString());
                     break;
                 case 7: 
                     break;
                 default:
+                    //Lets the user know that the choice is invalid
                     System.out.println("Invalid choice, please try again.");
             }
               
