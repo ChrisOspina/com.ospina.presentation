@@ -1,3 +1,23 @@
- <?import javafx.scene.control.Label?>
- <Label text="Hello world">
-</Label>
+ <?import javafx.scene.layout.AnchorPane?>
+ <?import javafx.scene.layout.VBox?>
+ <?import javafx.scene.control.MenuBar?>
+ <?import javafx.scene.control.Menu?>
+ <?import javafx.scene.control.MenuItem?>
+ <?import javafx.scene.control.SeparatorMenuItem?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ospina.presentation.TimeSheetController">
+    <children>
+        <VBox>
+            <MenuBar>
+                <menus>
+                    <Menu text="File">
+                        <items>
+                            <SeparatorMenuItem />
+                            <MenuItem fx:id="exitMenuItem" text="Exit" onAction="#handleExitAction"/>
+                        </items>    
+                    </Menu>
+                </menus>
+            </MenuBar>
+        </VBox>
+    </children>
+ </AnchorPane>
