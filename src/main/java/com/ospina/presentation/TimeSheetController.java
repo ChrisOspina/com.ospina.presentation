@@ -7,6 +7,7 @@ package com.ospina.presentation;
 
 import com.ospina.buisness.Timesheet;
 import javafx.fxml.FXML;
+import javafx.scene.control.TabPane;
 
 /**
  *
@@ -15,6 +16,10 @@ import javafx.fxml.FXML;
 public class TimeSheetController
 {
    private Timesheet t;
+   
+   @FXML
+   private TabPane tabpane;
+   
    
    @FXML
    protected void handleExitAction()
