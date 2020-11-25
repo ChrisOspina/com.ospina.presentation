@@ -53,20 +53,6 @@ public class Timesheet {
      * @return the current instance of Worker
      */
     public Worker getWorker(){return Worker;}
-    
-     public void writeJSON(PrintStream ps)
-    {
-        //The same setup as above but we are writing to a JSON file
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-        //*****************************************
-        //We also need to confirm that we're writing the curent instance 
-        //to the file and printing it
-        //**************************************       
-        String jsonString = gson.toJson(this);
-        ps.println(jsonString);
-    }
     /**
      * This method reads time sheet data from a JSON file
      * @param fr 

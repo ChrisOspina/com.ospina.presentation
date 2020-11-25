@@ -114,21 +114,6 @@ public class Shift {
    
     } 
    
-    /**
-     * Writes the member variables in JSON format to the given
-     * PrintStream
-     * 
-     * @param ps the FileReader instance that performs the writing
-     * of the values to JSON
-     */
-    public void writeJSON(PrintStream ps){
-       //The same setup as above but we are writing to a JSON file
-       GsonBuilder builder = new GsonBuilder();
-       builder.setPrettyPrinting();
-       Gson gson = builder.create();
-       String jsonString = gson.toJson(this);
-       ps.println(jsonString);
-    }
    
    /**
     * Creates a string representation of the 
@@ -145,7 +130,7 @@ public class Shift {
         //of the prewritten toString version of the "date" instance
         //and the the hoursWorked member variable
         //*******************************************
-        String s = this.date.toString() + "," + " " + this.HoursWorked + " hrs";
+        String s = this.date.toString() + "," + " " + this.HoursWorked;
         return s;
     }
 }

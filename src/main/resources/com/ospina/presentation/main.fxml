@@ -1,29 +1,54 @@
- <?import javafx.scene.layout.GridPane?>
- <?import javafx.scene.layout.VBox?>
- <?import javafx.scene.control.MenuBar?>
- <?import javafx.scene.control.Menu?>
- <?import javafx.scene.control.MenuItem?>
- <?import javafx.scene.control.SeparatorMenuItem?>
- <?import javafx.scene.control.TabPane?>
- <?import javafx.scene.control.Tab?>
-<GridPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.ospina.presentation.TimeSheetController">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="anchorpane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ospina.presentation.TimeSheetController">
     <children>
         <VBox>
             <MenuBar>
                 <menus>
-                    <Menu text="File">
+                    <Menu fx:id="filemenu" text="File" onAction="#openfileAction">
                         <items>
                             <SeparatorMenuItem />
-                            <MenuItem fx:id="exitMenuItem" text="Exit" onAction="#handleExitAction"/>
+                            <MenuItem fx:id="exitMenuItem" onAction="#handleExitAction" text="Exit" />
                         </items>    
                     </Menu>
                 </menus>
             </MenuBar>
-            <TabPane>
-                <Tab text="Worker"/>
-                <Tab text="Shifts"/> 
+         <Separator prefHeight="0.0" prefWidth="282.0" />
+            <TabPane id="tabpane">
+                <Tab text="Worker">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextArea prefHeight="200.0" prefWidth="281.0" text="&#10;First Name&#10;&#10;Last Name&#10;&#10;Id&#10;&#10;Payrate&#10;" wrapText="true" />
+                        <TextField id="first_name" layoutX="83.0" layoutY="14.0" prefHeight="26.0" prefWidth="153.0" />
+                        <TextField id="last_name" layoutX="83.0" layoutY="50.0" prefHeight="26.0" prefWidth="153.0" />
+                        <TextField id="worker_id" layoutX="81.0" layoutY="87.0" prefHeight="26.0" prefWidth="158.0" />
+                        <TextField id="payrate" layoutX="80.0" layoutY="122.0" prefHeight="26.0" prefWidth="160.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+                <Tab text="Shifts">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ListView id="shiftslistview" prefHeight="200.0" prefWidth="275.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab> 
             </TabPane>
         </VBox>
     </children>
- </GridPane>
+ </AnchorPane>
