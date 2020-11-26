@@ -6,6 +6,7 @@
 package com.ospina.presentation;
 
 import com.ospina.buisness.Timesheet;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import javafx.fxml.FXML;
@@ -13,7 +14,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import java.util.Scanner;
+import javafx.stage.FileChooser;
+
 
 
 /**
@@ -22,7 +24,7 @@ import java.util.Scanner;
  */
 public class TimeSheetController
 {
-   private Timesheet t;
+   private Timesheet t = new Timesheet();
     
    @FXML
    private Menu filemenu;
@@ -49,12 +51,25 @@ public class TimeSheetController
    @FXML
    protected void openfileAction() throws FileNotFoundException
    {
-       Scanner in = new Scanner(System.in);
+       FileChooser fileChooser = new FileChooser();
+       fileChooser.setTitle("Open Resource File");
        
-       System.out.println("Enter a file name");
-       String filename = in.nextLine();
-       FileReader fr = new FileReader(filename);
+       File file = fileChooser.showOpenDialog(null);
+       FileReader fr = new FileReader(file);
        t.readJSON(fr);
+       
+       System.out.println(t.getShiftLen());
+       
+       first_name.setText(t.getWorker().getFirst());
+       last_name.setText(t.getWorker().getLast());
+       String idtext = Integer.toString(t.getWorker().getId());
+       worker_id.setText(idtext);
+       String payrtetxt = Double.toString(t.getWorker().getRate());
+       payrate.setText(payrtetxt);
+       
+
+       
+       
        
        
    }
@@ -65,4 +80,17 @@ public class TimeSheetController
    {
        System.exit(0);
    }
+   
+   @FXML
+   protected void SaveAsAction()
+   {
+       
+   }
+   
+   @FXML
+   protected void saveaction()
+   {
+       
+   }
+
 }

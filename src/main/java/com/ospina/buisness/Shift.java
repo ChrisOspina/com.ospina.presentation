@@ -7,6 +7,7 @@ package com.ospina.buisness;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import java.io.FileReader;
 import java.io.PrintStream;
 
@@ -18,7 +19,9 @@ import java.io.PrintStream;
  * @since 9/22/20
  */
 public class Shift { 
+    @SerializedName("date")
     private MyDate date;
+    @SerializedName("hoursWorked")
     private double HoursWorked;
     
     /**
@@ -110,11 +113,22 @@ public class Shift {
        //Finally we will set each member variable to the returned values from get
        date = s.date;
        this.setHours(s.getHours());
-      
-   
     } 
-   
-   
+    /**
+     * Writes the member variables in JSON format to the given PrintStream
+     *
+     * @param ps the FileReader instance that performs the writing of the values
+     * to JSON
+     */
+    public void writeJSON(PrintStream ps) {
+        //The same setup as above but we are writing to a JSON file
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        String jsonString = gson.toJson(this);
+        ps.println(jsonString);
+    }
+
    /**
     * Creates a string representation of the 
     * Shift object by concatenating the pre-written toString method

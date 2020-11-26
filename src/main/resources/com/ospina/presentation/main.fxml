@@ -18,9 +18,13 @@
         <VBox>
             <MenuBar>
                 <menus>
-                    <Menu fx:id="filemenu" text="File" onAction="#openfileAction">
+                    <Menu fx:id="filemenu" text="File">
                         <items>
-                            <SeparatorMenuItem />
+                     <MenuItem fx:id="openmenuitem" mnemonicParsing="false" onAction="#openfileAction" text="Open" />
+                     <SeparatorMenuItem mnemonicParsing="false" />
+                     <MenuItem fx:id="saveasmenuitem" mnemonicParsing="false" onAction="#SaveAsAction" text="Save As" />
+                     <MenuItem fx:id="savereportmenuitem" mnemonicParsing="false" onAction="#saveaction" text="Save Report" />
+                     <SeparatorMenuItem mnemonicParsing="false" />
                             <MenuItem fx:id="exitMenuItem" onAction="#handleExitAction" text="Exit" />
                         </items>    
                     </Menu>

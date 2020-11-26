@@ -130,6 +130,21 @@ public class MyDate {
         this.setDay(md.getDay());
         this.setYear(md.getYear());
     }
+    
+     /**
+     * Writes the member variables in JSON format to the given PrintStream
+     *
+     * @param ps the PrintStream instance that performs the reading of the
+     * values to JSON
+     */
+    public void writeJSON(PrintStream ps) {
+        //The same setup as above but we are writing to a JSON file
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        String jsonString = gson.toJson(this);
+        ps.println(jsonString);
+    }
 
     /**
      * This method creates a string representation of the MyDate object in

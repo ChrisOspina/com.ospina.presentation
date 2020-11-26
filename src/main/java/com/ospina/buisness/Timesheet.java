@@ -57,6 +57,11 @@ public class Timesheet {
      * This method reads time sheet data from a JSON file
      * @param fr 
      */
+    
+    public int getShiftLen()
+    {
+        return Shifts.length;
+    }
     public void readJSON(FileReader fr)
     {
         //*************************************************
@@ -80,6 +85,23 @@ public class Timesheet {
         this.setWorker(t.getWorker());
         this.Shifts= t.Shifts;      
     } 
+     /**
+     * This method writes the time sheet to a JSON file
+     *
+     * @param ps
+     */
+    public void writeJSON(PrintStream ps) {
+        //The same setup as above but we are writing to a JSON file
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        //*****************************************
+        //We also need to confirm that we're writing the curent instance 
+        //to the file and printing it
+        //**************************************       
+        String jsonString = gson.toJson(this);
+        ps.println(jsonString);
+    }
     /**
      * This method converts the object data into a string 
      * @return the String representation of the class
