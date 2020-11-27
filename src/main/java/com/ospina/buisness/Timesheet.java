@@ -102,6 +102,48 @@ public class Timesheet {
         String jsonString = gson.toJson(this);
         ps.println(jsonString);
     }
+    public void report(PrintStream ps) {
+    
+        //****************************************
+        //Same setup as the first assignment.
+        //First we print the worker data as well as
+        //hardcoding its respective labels
+        //**************************************
+        ps.println("Payroll Report");
+        ps.println("---------------");
+        ps.printf("First: %s\n", this.getWorker().getFirst());
+        ps.printf("Last: %s\n", this.getWorker().getLast());
+        ps.printf("Id: %d\n", this.getWorker().getId());
+        ps.printf("Pay rate: %.2f\n", this.getWorker().getRate());
+        ps.println(" ");
+        ps.println("Month  Day  Year  Hours Worked  Pay");
+        ps.println("-----  ---  ----  ----- ------  ---");
+        //Creating a variable to hold the total hours and pay values
+        double totalhrs = 0;
+        double totalpay = 0;
+        //This for loop will iterate through the Shifts array and print its data
+        for (int i = 0; i < Shifts.length; i++) {
+            //*************************************************************
+            //Because pay is not a member variable, we need to calculate it 
+            //by multiplying the worker's hourly rate with the hours that
+            //the worker has taken their shift on.
+            //***********************************************************888
+            double pay = this.Worker.getRate() * Shifts[i].getHours();
+            //Printing each instance from the array
+            ps.printf("%3d %5d %6d %10.2f %10.2f\n", Shifts[i].getDate().getMonth(),
+                    Shifts[i].getDate().getDay(), Shifts[i].getDate().getYear(),
+                    Shifts[i].getHours(), pay);
+            //Incrementing the total variables
+            totalhrs += Shifts[i].getHours();
+            totalpay += pay;
+    }
+    //After the loop we can print out the total values 
+        ps.println(
+                "-----  ---  ----  ------------  ---");
+        ps.printf(
+                "Total %20.2f %9.2f\n", totalhrs, totalpay);
+    }
+
     /**
      * This method converts the object data into a string 
      * @return the String representation of the class
