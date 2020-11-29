@@ -53,15 +53,21 @@ public class Timesheet {
      * @return the current instance of Worker
      */
     public Worker getWorker(){return Worker;}
+
     /**
-     * This method reads time sheet data from a JSON file
-     * @param fr 
+     * This method returns the length of the shift.
+     * It is necessary because it would allow the controller to access
+     * the length of the shifts array.
+     * @return the length of the shifts array
      */
-    
     public int getShiftLen()
     {
         return Shifts.length;
     }
+    /**
+     * This method reads time sheet data from a JSON file
+     * @param fr 
+     */
     public void readJSON(FileReader fr)
     {
         //*************************************************
@@ -142,6 +148,31 @@ public class Timesheet {
                 "-----  ---  ----  ------------  ---");
         ps.printf(
                 "Total %20.2f %9.2f\n", totalhrs, totalpay);
+    }
+    
+      /**
+     * @param index represents which shift the user wants to
+     * 
+     * This method gives the user the nth instance of shift that they
+     * input.
+     * @return the nth instance of shift
+     * @throws ArrayIndexOutOfBoundsException 
+     */
+    public Shift getShiftAt(int index) throws ArrayIndexOutOfBoundsException
+    {
+        //The index is not between 0 and 4
+        if(index < 0 || index > Shifts.length)
+        {
+            //An Out of bounds exception will be thrown
+            ArrayIndexOutOfBoundsException x;
+            x = new ArrayIndexOutOfBoundsException();
+            throw x;
+        }
+        //Otherwise it will function properly
+        else
+        {
+            return Shifts[index];  
+        }
     }
 
     /**

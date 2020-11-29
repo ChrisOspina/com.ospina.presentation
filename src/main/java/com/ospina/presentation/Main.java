@@ -5,17 +5,15 @@
  */
 package com.ospina.presentation;
 
-
-import com.ospina.buisness.Timesheet;
 import javafx.application.Application;
 
 
 /**
  * Contains main program code. This class generates
- * a Timesheet presentation for employees
+ * a Timesheet presentation for employees through a GUI
  * @author cospina
- * @version 1.0
- * @since 10/20/20
+ * @version 2.0
+ * @since 11/18/20
  *
  */
 public class Main {
@@ -26,8 +24,6 @@ public class Main {
      */
     public static void main(String args[])
     {
-        Timesheet t = new Timesheet();
-        
         Application.launch(TimeSheetApplication.class,args);
     }
     

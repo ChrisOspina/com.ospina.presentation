@@ -3,7 +3,7 @@
     "first": "Rose",
     "last": "Diaz",
     "id": 101,
-    "payrate": 0.0
+    "payRate": 20.0
   },
   "shifts": [
     {

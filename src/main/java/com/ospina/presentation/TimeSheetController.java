@@ -20,21 +20,20 @@ import javafx.stage.FileChooser;
 
 
 /**
- *
+ * This class is the controller for all methods in the application.
+ * The controller also assigns these methods to different controls
+ * of the interface.
  * @author cospina
+ * @since 11/17/20
  */
 public class TimeSheetController
 {
    private Timesheet t = new Timesheet();
     
    @FXML
-   private Menu filemenu;
+   private ListView <String> shiftslistview = new ListView<>();;
    
-   @FXML
-   private TabPane tabpane;
-   
-   @FXML
-   private ListView shiftslistview;
+   private FileReader fr;
    
    @FXML
    private TextField first_name;
@@ -48,7 +47,13 @@ public class TimeSheetController
    @FXML
    private TextField payrate;
    
- 
+   
+    /**
+     * This method handles what would happen when the user clicks 
+     * "Open" in the File Menu. It reads an instance from JSON and 
+     * sets the text fields to the values present
+     * @throws FileNotFoundException
+     */
    @FXML
    protected void openfileAction() throws FileNotFoundException
    {
@@ -56,25 +61,35 @@ public class TimeSheetController
        fileChooser.setTitle("Open TimeSheet File");
        
        File file = fileChooser.showOpenDialog(null);
-       FileReader fr = new FileReader(file);
+       fr = new FileReader(file);
        t.readJSON(fr);
        
        System.out.println(t.getShiftLen());
        
        first_name.setText(t.getWorker().getFirst());
        last_name.setText(t.getWorker().getLast());
-       String idtext = Integer.toString(t.getWorker().getId());
-       worker_id.setText(idtext);
-       String payrtetxt = Double.toString(t.getWorker().getRate());
-       payrate.setText(payrtetxt);
+       worker_id.setText(String.valueOf(t.getWorker().getId()));
+       payrate.setText(String.valueOf(t.getWorker().getRate()));
+       
+       for (int i = 0; i<t.getShiftLen();i++)
+       {
+           shiftslistview.getItems().add(t.getShiftAt(i).toString());
+       }
    }   
-   
+   /**
+    * This method handles when the user presses "Exit"
+    * With the value of "0"
+    */
    @FXML
    protected void handleExitAction()
    {
        System.exit(0);
    }
-   
+   /**
+    * This method handles what happens when the user presses
+    * "Save As" in the file menu. This method writes to a JSON File
+    * @throws FileNotFoundException 
+    */
    @FXML
    protected void SaveAsAction() throws FileNotFoundException
    {
@@ -84,7 +99,11 @@ public class TimeSheetController
        PrintStream ps = new PrintStream(file);
        t.writeJSON(ps);
    }
-   
+   /**
+    * This method handles what happens when the user presses
+    * "Save" in the file menu. This method prints to a TXT File
+    * @throws FileNotFoundException 
+    */
    @FXML
    protected void saveaction() throws FileNotFoundException
    {
