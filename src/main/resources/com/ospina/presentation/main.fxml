@@ -37,10 +37,10 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <TextArea prefHeight="200.0" prefWidth="281.0" text="&#10;First Name&#10;&#10;Last Name&#10;&#10;Id&#10;&#10;Payrate&#10;" wrapText="true" />
-                        <TextField id="first_name" layoutX="83.0" layoutY="14.0" prefHeight="26.0" prefWidth="153.0" />
-                        <TextField id="last_name" layoutX="83.0" layoutY="50.0" prefHeight="26.0" prefWidth="153.0" />
-                        <TextField id="worker_id" layoutX="81.0" layoutY="87.0" prefHeight="26.0" prefWidth="158.0" />
-                        <TextField id="payrate" layoutX="80.0" layoutY="122.0" prefHeight="26.0" prefWidth="160.0" />
+                        <TextField fx:id="first_name" layoutX="83.0" layoutY="14.0" prefHeight="26.0" prefWidth="153.0" />
+                        <TextField fx:id="last_name" layoutX="83.0" layoutY="50.0" prefHeight="26.0" prefWidth="153.0" />
+                        <TextField fx:id="worker_id" layoutX="81.0" layoutY="87.0" prefHeight="26.0" prefWidth="158.0" />
+                        <TextField fx:id="payrate" layoutX="80.0" layoutY="122.0" prefHeight="26.0" prefWidth="160.0" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -48,7 +48,7 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ListView id="shiftslistview" prefHeight="200.0" prefWidth="275.0" />
+                        <ListView fx:id="shiftslistview" prefHeight="200.0" prefWidth="275.0" />
                      </children>
                   </AnchorPane>
                </content></Tab> 

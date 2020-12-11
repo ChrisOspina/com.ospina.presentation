@@ -12,8 +12,6 @@ import java.io.FileReader;
 import java.io.PrintStream;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
@@ -28,10 +26,15 @@ import javafx.stage.FileChooser;
  */
 public class TimeSheetController
 {
+    //First we need to declare and allocate an instance of Timesheet
    private Timesheet t = new Timesheet();
-    
+   
+   //***************************************************8
+   //These attributes are necessary to allow us to connect to the 
+   //FXML file
+   //*************************************
    @FXML
-   private ListView <String> shiftslistview = new ListView<>();;
+   private ListView <String> shiftslistview;
    
    private FileReader fr;
    
@@ -57,22 +60,31 @@ public class TimeSheetController
    @FXML
    protected void openfileAction() throws FileNotFoundException
    {
+       //First we need to declare a new instance of FileChooser
        FileChooser fileChooser = new FileChooser();
        fileChooser.setTitle("Open TimeSheet File");
-       
+       //********************************************************
+       //This lets the computer know that whatever file the user selects 
+       //is the one that the system will read in
+       //**************************************************
        File file = fileChooser.showOpenDialog(null);
        fr = new FileReader(file);
        t.readJSON(fr);
        
-       System.out.println(t.getShiftLen());
-       
+       //Changing the value in the textfields to the values from JSON
        first_name.setText(t.getWorker().getFirst());
        last_name.setText(t.getWorker().getLast());
        worker_id.setText(String.valueOf(t.getWorker().getId()));
        payrate.setText(String.valueOf(t.getWorker().getRate()));
        
+       //**********************************************************
+       //For the list view we need a for loop that will access the shifts array
+       //To that we need to call getShfitLen and getShiftAt because the member
+       //variables are private
+       //*****************************************************
        for (int i = 0; i<t.getShiftLen();i++)
        {
+           //This will add the shift data to the listview
            shiftslistview.getItems().add(t.getShiftAt(i).toString());
        }
    }   
@@ -83,6 +95,7 @@ public class TimeSheetController
    @FXML
    protected void handleExitAction()
    {
+       //Extis the form with a value of 0
        System.exit(0);
    }
    /**
@@ -93,6 +106,10 @@ public class TimeSheetController
    @FXML
    protected void SaveAsAction() throws FileNotFoundException
    {
+       //******************************************
+       //Same setup as Open but we are writing to a file
+       // and not displaying values
+       //***********************************
        FileChooser fileChooser = new FileChooser();
        fileChooser.setTitle("Save as TimeSheet");
        File file = fileChooser.showOpenDialog(null);
@@ -107,7 +124,8 @@ public class TimeSheetController
    @FXML
    protected void saveaction() throws FileNotFoundException
    {
-        FileChooser fileChooser = new FileChooser();
+       //Same setup but only we are printing to a TXT file
+       FileChooser fileChooser = new FileChooser();
        fileChooser.setTitle("Save as TimeSheet");
        File file = fileChooser.showOpenDialog(null);
        PrintStream ps = new PrintStream(file);
